@@ -4,7 +4,7 @@ Code repository for estimating the **recurrent-ratio (R-ratio)** using a modifie
 
 The R-ratio is designed to quantify the relative balance between **intra-regional recurrent excitation** and **inter-regional excitatory amplification** in a whole-brain circuit model. By extending the pFIC framework, this repository provides analysis scripts for estimating model parameters, validating model performance, and computing the R-ratio from optimized regional excitation parameters.
 
-> paper: XX
+> **Paper:** [Park et al., *The balance of local and distributed excitation shapes brain stability and reflects aging- and Alzheimer's disease-related alterations* (bioRxiv, 2026)](https://www.biorxiv.org/content/10.64898/2026.09.17.752536v1)
 
 ---
 
@@ -12,10 +12,11 @@ The R-ratio is designed to quantify the relative balance between **intra-regiona
 
 ```text
 Rratio/
-├── code/        # Core Python scripts for model simulation, training, validation, and testing
-├── config/      # configuration files for paths, model parameters, and simulation settings
-├── datasets/    # Prepared input files used for running the model 
-├── scripts/     # Shell scripts for executing pipelines
+├── code/                 # Core Python scripts for model simulation, training, validation, and testing
+├── config/               # configuration files for paths, model parameters, and simulation settings
+├── datasets/             # Prepared input files used for running the model  
+├── precomputed_results/  # Precomputed data underlying the results reported in the paper
+├── example_scripts/      # Shell scripts for executing pipelines
 └── README.md    
 ```
 
@@ -29,7 +30,7 @@ Example commands:
 ```bash
 bash scripts/HCP.sh
 or
-bash scripts/ADNI.sh
+bash example_scripts/ADNI_age/ADNI_1.sh
 ```
 
 ### R-ratio calculation
@@ -54,13 +55,27 @@ wEE_inter = test_df.iloc[-n_roi:, :].to_numpy(dtype=float)
 R_ratio = wEE_intra / (wEE_intra + wEE_inter)
 ```
 
+## Precomputed results
+
+The `precomputed_results/` directory contains precomputed values used for the analyses and results reported in the paper. These results are provided to allow users to reproduce the corresponding analyses and figures without rerunning computationally intensive model-fitting procedures.
+
+### ADNI age trends
+
+The `ADNI_age_trends.npy` file contains the precomputed R-ratio results used to examine age-related trends across the ADNI cohort. These values correspond to the results reported in the paper and can be used directly to reproduce the associated analyses and visualizations.
+
+### ADNI ACM trends
+
+The `ADNI_acm_trends.npy` file contains the precomputed R-ratio results used for the ACM trend analyses in the ADNI cohort. These values correspond to the results reported in the paper and can be used directly to reproduce the associated analyses and visualizations.
+
+
 ## Citation
 
-If you use this code, please cite:
+If you use the R-ratio framework, code, or derived data provided in this repository, please cite:
 
-```text
-Citation information will be added upon publication.
-```
+Yeongjun Park, Sunghun Kim, Hyunjin Park, Theodore D. Satterthwaite, Boris C. Bernhardt, Bo-yong Park  
+**The balance of local and distributed excitation shapes brain stability and reflects aging- and Alzheimer's disease-related alterations.**  
+*bioRxiv* (2026).  
+doi: 10.64898/2026.09.17.752536
 
 ---
 
